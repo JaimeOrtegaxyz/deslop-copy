@@ -12,20 +12,38 @@ credibility mechanics and rejecting the engagement-bait.
 
 ## How it works
 
+v3 moved enforcement out of prompt-space. Asking a model to avoid AI cadences
+fails a percentage of the time — its training rewards those exact shapes — so
+the skill stopped relying on the writer and added two checks the writer can't
+sweet-talk:
+
 - **Orients first.** Reads README, docs, `.canon`/brand files, and finds where
   copy lives (`src/content`, section components, MDX, SEO meta) before judging a
   word. Builds a one-paragraph product model; asks 2–3 questions if the concept
   is unclear.
-- **Two-axis diagnosis.** Marketing-slop vocabulary + structural tells, *and*
-  persuasion failures (hierarchy, hook, value-prop, proof). Runs the swap /
-  falsifiable / founder-voice tests.
+- **Lints, then hunts.** `scripts/deslop-lint.py` deterministically flags the
+  mechanical tells — negation-contrast, tricolons, setup→reveal, vague enders,
+  the full slop-vocabulary blocklist — each with an inline fix hint. The model's
+  eyes go only where regex can't: mirrors, profundity, persuasion failures.
+- **Gates its own rewrites.** Every rewritten line must pass
+  `deslop-lint.py --review COPY-REVIEW.md` with zero errors. No override; a
+  disputed hit is surfaced to you, never shipped quietly.
+- **Adversarial judge.** A fresh-context subagent — no product context, no
+  attachment to the phrasing — tries to refute each surviving line against the
+  shape catalog. Failures get redone and re-gated; leftovers after two rounds
+  are reported as unresolved.
 - **Never fabricates proof.** Where a rewrite needs a number or customer you
   don't have, it leaves a visible `‹NEEDS: …›` flag and asks — it won't invent.
-- **De-slop governs the hook.** Trading an AI tell for a clickbait tell isn't a
-  fix; restraint wins ties.
 - **Writes `COPY-REVIEW.md`** at the project root (diagnosis + before/after +
-  proof-gaps), you tick the rewrites you want, and it applies them to the real
-  files — leaving the proof-gap flags for you to fill.
+  proof-gaps + a truthful `lint/judge` status line), you tick the rewrites you
+  want, and it applies them to the real files.
+
+The linter stands alone, too — Python 3, no dependencies:
+
+```sh
+python3 scripts/deslop-lint.py page-copy.txt   # or --review COPY-REVIEW.md
+python3 scripts/deslop-lint.py --self-test     # 45-case regression battery
+```
 
 ## Install
 

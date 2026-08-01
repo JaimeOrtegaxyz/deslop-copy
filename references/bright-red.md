@@ -12,6 +12,11 @@ yourself defending one of these, you've already lost — rewrite it.
 The fix is always the same: **delete the structure, state one concrete fact** (a
 number, a name, a real mechanism), and **cut the word count.**
 
+This file doubles as the charter for the fresh-context judge (workflow step 5):
+the mechanical forms below are also caught by `scripts/deslop-lint.py`, so the
+judge's real work is wherever structure performs insight in ways regex can't
+pin — mirrors, symmetry, the profound-sounding line.
+
 ---
 
 ## The shapes

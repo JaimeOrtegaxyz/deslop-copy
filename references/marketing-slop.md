@@ -1,5 +1,12 @@
 # Marketing & Web-Copy Anti-Slop Reference
 
+> **Detection is automated.** The blocklists and structural patterns below are
+> enforced mechanically by `scripts/deslop-lint.py`, which prints a fix hint
+> with every hit. During a run, don't read this file to find slop — the linter
+> already did. Open it when a hit needs a fuller replacement pattern than the
+> hint, or for the "deeper tells" and "humanizing moves" sections, which no
+> regex can apply for you.
+
 Scope: landing pages, SaaS/dev-tool sites, product pages, feature sections,
 CTAs, "about" copy. The through-line under every fix:
 
