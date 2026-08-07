@@ -53,3 +53,16 @@ Or project-scoped: clone into `.claude/skills/deslop-copy/`.
 
 See [SKILL.md](SKILL.md) for the full method and [references/](references/) for
 the slop blocklist, persuasion principles, and hook bank.
+
+## Credits
+
+The lint-gate architecture comes from woosal1337's
+["The cure for AI slop is a 1986 aircraft manual"](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop):
+check the model's writing with a deterministic linter instead of trusting the
+prompt. That kit's `ste-lint.py` and cross-model experiments showed a
+machine-checkable writing system cuts slop where a banned-words list doesn't.
+`deslop-lint.py` applies the same idea to marketing copy with its own rule set.
+
+## License
+
+[MIT](LICENSE)
